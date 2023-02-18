@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>컬리-마켓컬리/뷰티컬리</title>
+  <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+  <style>
+
+         @font-face {
+            font-family: 'Pretendard-Regular';
+            src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+            font-weight: 400;
+                   font-style: normal;
+        }
+
+        *{
+            margin: 0px;
+            padding: 0px;
+            box-sizing: border-box;
+            text-align: left;
+            font-family: 'Pretendard-Regular';
+        }
+        .header_top{
+            position: relative;
+            top: 0px;
+            background-color: rgb(88, 15, 103);
+            color: white;
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        .header_top p{
+            text-align: center;
+            font-family: 'Titillium Web', sans-serif;
+            font-size: 13px;
+        }
+        .container{
+            color: white;
+            padding:  10px 0;
+            margin:  0 auto;
+            width: 1050px;
+            position: relative;
+        }
+        .quit{
+            position : absolute;
+            right : 0;
+            top: 7px;
+        }
+        .acount_top li{
+            padding: 0, 30px;
+            color: black;
+            margin: 0 5px 0px 5px;
+            display: inline-block;
+            font-size: 11px;
+            float: right;
+            font-weight: bold;
+            margin-top: 10px;
+            text-align: left;
+        }
+        .acount_top a:last-child{
+            color: purple;
+            text-align: center;
+        }
+        .acount_top li:hover{
+            color: purple;
+        }
+        .box{
+            width: 1130px;
+            margin: 0 auto;
+        }
+        header{
+           height: 150px;
+        }
+
+        #logo img{
+            width: 90px;
+            float: left;
+            margin-top: 40px;
+            margin-left: 13px;
+        }
+        input{
+            padding-left: 20px;
+            margin-left: 20px;
+            border: 1px solid rebeccapurple;
+            margin-top: 39px;
+            width: 420px;
+            height: 50px;
+            border-radius: 4px;
+            margin-right: 60px;
+            font-size: 15px;
+        }
+        span{
+            display: inline-block;
+            margin-right: 9px;
+            margin-top: 44px;
+            font-size: 17px;
+        }
+        #main_menu{
+            margin-top: 40px;
+
+        }
+        .category{
+            width: 200px;
+            display: inline-block;
+            margin-left: 20px;
+            float: left;
+            position: relative;
+        }
+        .category :hover{
+            color: blueviolet;
+            cursor: pointer;
+        }
+
+        #setbul{
+            position :absolute;
+            border: 1px solid lightgray;
+            border-radius: 20px;
+            width: 120px;
+            text-align: center;
+            margin-left: 863px;
+            font-size: 13px;
+            margin-bottom: 391px;
+            color: blueviolet;
+
+        }
+        .category svg{
+            position: absolute;
+            top: 18;
+            width: 18px;
+            margin-right: 9px;
+            bottom: 3;
+
+        }
+        .category > span{
+            display: inline-block;
+            margin-top: 1px;
+            margin-left: 30px;
+            font-weight: bold;
+         }
+
+        #main_menu a{
+            text-decoration: none;
+            color: black;
+            font-weight: bold;
+            display: inline-block;
+            margin-left: 130px;
+            font-size: 16px;
+        }
+        #main_menu a:first-child{
+            margin-left: 40px;
+
+        }
+        #main_menu li:hover{
+            color: blueviolet;
+            text-decoration: underline;
+        }
+
+        #main_image{
+            position: relative;
+            margin-top: 58px;
+            height: 312px;
+            background-image: url(./img/img01.jpg);
+            background-repeat: no-repeat;
+            background-position: top center;
+        }
+        .button{
+            position: absolute;
+            top: 105px;
+            left: 23px;
+            background-color: gray;
+            opacity: 0.4;
+
+            border-radius: 100px;
+            border: none;
+            color: white;
+            padding: 10px 20px 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            font-size: 35px;
+            cursor: pointer;
+        }
+        .button2{
+            position: absolute;
+            padding: 10px 20px 10px 20px;
+            top: 105px;
+            left: 1043px;
+            background-color: gray;
+            opacity: 0.4;
+            border-radius: 100px;
+            border: none;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            font-size: 35px;
+            cursor: pointer;
+        }
+        #first{
+            float: left;
+            color: rgb(84, 8, 155);
+            font-weight: bold;
+            cursor: pointer;
+        }
+        #second{
+            float: left;
+            color: rgba(75, 75, 74, 0.795);
+        }
+        #product_list{
+            display: flex;
+            margin-top : 30px;
+            height: 450px;
+        }
+        #product_recipe > img{
+            right: 32;
+            margin-right: 20px;
+
+        }
+        #product_recipe {
+            display: flex;
+            margin-top: 30px;
+        }
+        h1{
+            margin-top: 80px;
+            font-size: 30px;
+            font-style: normal;
+            text-align: center;
+        }
+        .item2{
+            margin: 0 20px;
+        }
+        .item2 > p{
+            font-size: 18px;
+            margin: 0 20px;
+            text-align: center;
+            margin-top: 14px;
+        }
+        .item > img{
+            margin-left: 50px;
+            height: 400px;
+        }
+        .item > img:hover{
+            transform: scale(1.1); transition: .3s; /* 부드럽게 */
+            box-shadow: 0 17px 20px -18px rgba(0, 0, 0, 1);
+        }
+        .item p{
+            padding: 15px;
+            text-align: left;
+            margin-left: 35px;
+        }
+        .item h3{
+            text-align: left;
+            margin-left: 55px;
+            font-size: 20px;
+        }
+        li {
+            list-style-type: none;
+        }
+        .advertisement {
+            padding-top: 160px;
+            padding-bottom: 40px;
+            width: 250px;
+            margin-left: 43px;
+        }
+        footer{
+            border-top: solid rgb(232, 230, 230) 1px;
+            height: 240px;
+            color: rgb(58, 57, 57);
+            margin-top: 80px;
+
+        }
+        footer .items{
+            float: left;
+            margin-top: 50px;
+            margin-left: 40px;
+        }
+        footer .items ul{
+            margin-top: 15px;
+        }
+        footer .items li{
+            text-align: left;
+            font-size: 14px;
+            padding-top: 8px;
+            margin-top: 5px;
+        }
+        footer .phone{
+            /* font-size: 100px; */
+        }
+       #costomer_list {
+           visibility: hidden;
+           position: absolute;
+           /* float: right; */
+           display: inline-block;
+           right: 390px;
+           top: 68px;
+           font-size: 11px;
+           border: 1px solid gray;
+           padding: 4px 30px 2px 6px
+        }
+        #costomer_list li{
+           padding: 3px;
+        }
+        #costomer_list a{
+          color: black;
+           text-decoration: none;
+        }
+        .product_instagram{
+            display: flex;
+            margin-top: 20px;
+
+        }
+        .product_instagram .item3{
+            margin-left: 30px;
+
+        }
+         .acount_top{
+        display: flex;
+        /* margin: 0 auto; */
+        /* right: 0px; */
+        position: absolute;
+        margin-top: 10px;
+        }
+
+        .login_button{
+        position: relative;
+        left: 1020px;
+        margin-right: 10px;
+        /* background: wheat; */
+        /* border-style: none; */
+        }
+
+        .join_button{
+         position: relative;
+         left: 1020px;
+        }
+
+        .mb3{
+        text-align:right;
+        }
+        #test_btn1, #test_btn2{
+          border: 1px solid rgb(88, 15, 103);;
+            background-color: rgb(88, 15, 103);
+            color: white;
+            padding: 5px;
+            cursor: pointer;
+            border-radius: 6px;
+
+        }
+    </style>
+  <script>
+        let index = 0;
+        $(function(){
+            $(".button").click(function(){
+            console.log("btn");
+            index = (index+3)%4;
+            $("#main_image").css('background-image','url(./img/img0'+(index+1)+'.jpg');
+        });
+        $(".button2").click(function(){
+            index = (index+1)%4;
+            $("#main_image").css({'background-image':"url(./img/img0"+(index+1)+".jpg)"});
+        });
+        });
+
+        $(function(){
+            $(".quit").click(function(){
+                $(".header_top").animate({ marginTop: '-36px',},500);
+            });
+            });
+
+
+        $(function(){
+            $("#second").mouseover(function(){
+                $(this).css({'color': 'purple', 'cursor': 'pointer'})
+            });
+            $("#second").mouseout(function(){
+                $(this).css({'color': 'gray'})
+            });
+        });
+        $(function(){
+            let mouse;
+            $(window).mousemove(function(e){
+                mouse = e.pageY;
+            })
+            $("#costomer_center").mouseenter(function(){
+                $("#costomer_list").css({'visibility': 'visible'})
+            });
+            $("#costomer_center").mouseleave(function(){
+                if(mouse<58){
+                    $("#costomer_list").css({'visibility': 'hidden'});
+                }
+            });
+            $("#costomer_list").mouseleave(function(){
+                $("#costomer_list").css({'visibility': 'hidden'});
+            });
+        });
+
+         let subToggle=true;
+        $(".category").click(()=>{
+        if(subToggle){
+            $(".sub").slideDown(1000);
+        }else{
+            $(".sub").slideUp(1000);
+        }
+        subToggle=!subToggle;
+        });
+    </script>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="header_top">
+      <div class="container">
+        <p>지금 가입하고 인기상품 <b>100원</b>에 받아가세요!
+        </p>
+        <a href="#" class="quit"><img src="./img/cancel.png" width="14px"></a>
+      </div>
+    </div>
+    <div class="box">
+      <div class="acount_top">
+        <div class="login_button">
+          <button id="test_btn1"
+                  onclick="location.href='items.html'"
+                  th:onclick="|location.href='@{/basic/items}'|" type="button">
+            상품관리
+          </button>
+        </div>
+        <div class="join_button">
+          <form th:action="@{/logout}" method="post">
+          <button type="submit" id="test_btn2"
+                  th:onclick="location.href='items.html'">로그아웃
+          </button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div id="costomer_list">
+      <ul>
+        <a href="#"><li>공지사항</li></a>
+        <a href="#"><li>자주하는 질문</li></a>
+        <a href="#"><li>1:1문의</li></a>
+        <a href="#"><li>대량주문 문의</li></a>
+      </ul>
+    </div>
+    <div class="box">
+      <div id="logo">
+        <span id="first">마켓컬리 | </span>
+        <span id="second">뷰티컬리</span>
+        <a href="./index5.html"><img src="./img/logo.jpg" alt="마켓컬리 로고이미지"></a>
+        <input type="text" placeholder="검색어를 입력해주세요">
+
+      </div>
+    </div> <!--box-->
+    <div class="box">
+      <nav id="main_menu">
+        <div class="category">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Pro 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg>
+          <span>카테고리</span>
+          <span id="setbul">샛별・낮 새벽배송</span>
+        </div>
+        <ul class="list_menu">
+          <a href="#"><li>신상품</li></a>
+          <a href="#"><li>베스트</li></a>
+          <a href="#"><li>알뜰쇼핑</li></a>
+          <a href="#"><li>특가/혜택</li></a>
+        </ul>
+      </nav>
+    </div><!--box-->
+  </header>
+  <section>
+    <div class="box">
+      <div id="main_image">
+        <button type="button" class="button"><</button>
+        <button type="button" class="button2">></button>
+      </div>
+      <h1>이 상품 어때요?</h1>
+      <div id="product_list">
+        <div class="item">
+          <img src="./img/img05.jpg">
+          <p>[풀무원] 새콤달콤 유뷰초밥</p>
+          <h3>4,980원</h3>
+        </div>
+
+        <div class="item">
+          <img src="./img/img06.jpg">
+          <p>[올리] 유니농 현미 크런치롤 미니(국내산)</p>
+          <h3>6,500원</h3>
+        </div>
+        <div class="item">
+          <img src="./img/img07.jpg">
+          <p>[종가집]배추속 겉절이</p>
+          <h3>9,975원</h3>
+        </div>
+      </div>
+
+      <div class="advertisement">
+        <img src="./img/img12.jpg" alt="광고" width="1050px" height="140px">
+      </div>
+
+      <h1>달콤하게 퍼지는 초콜렛</h1>
+      <div id="product_list">
+        <div class="item">
+          <img src="./img/img09.jpg">
+          <p>[크라운] 빅파이 딸기 324g</p>
+          <h3>3,680원</h3>
+        </div>
+        <div class="item">
+          <img src="./img/img10.jpg">
+          <p>[생미쉘] 초코칩 마들렝250g</p>
+          <h3>6,500원</h3>
+        </div>
+        <div class="item">
+          <img src="./img/img11.jpg">
+          <p>[그라쉐]아몬드 바크씬</p>
+          <h3>2,500원</h3>
+        </div>
+      </div>
+
+      <div class="advertisement">
+        <img src="./img/img13.webp" alt="광고" width="1050px" height="140px">
+      </div>
+
+
+      <h1>컬리의 레시피</h1>
+      <div id="product_recipe">
+        <div class="item2">
+          <img src="./img/img15.webp" width="338px" height="255">
+          <p>치킨야채수프</p>
+        </div>
+        <div class="item2">
+          <img src="./img/img14.webp" width="338px" height="255">
+          <p>로스티스 닭 다리&날개</p>
+        </div>
+        <div class="item2">
+          <img src="./img/img16.webp" width="338px" height="255">
+          <p>닭 껍질 튀김</p>
+        </div>
+      </div>
+
+      <div>
+        <div><h1>인스타그램 고객후기</h1></div>
+        <div><p style="text-align:center; color: rgb(153, 153, 153); margin-top:10px">더 많은 고객 후기가 궁금하다면?</p></div>
+        <div class="product_instagram">
+          <div class="item3">
+            <img src="img/img17.jpg" width="200px" height="205">
+          </div>
+          <div class="item3">
+            <img src="img/img18.jpg" width="200px" height="205">
+          </div>
+          <div class="item3">
+            <img src="img/img19.jpg" width="200px" height="205">
+          </div>
+          <div class="item3">
+            <img src="img/img20.jpg" width="200px" height="205">
+          </div>
+          <div class="item3">
+            <img src="img/img21.jpg" width="200px" height="205">
+          </div>
+        </div>
+
+        <div>
+          <p style="text-align:center; color: rgb(153, 153, 153); margin-top:30px">더 많은 고객 후기가 궁금하다면?</p></div>
+        <div style="text-align:center; margin-top:12px"><a href="https://www.instagram.com/marketkurly_regram" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color:black;">@marketkurly_regram</a></div>
+      </div>
+  </section>
+  <footer>
+    <div class="box">
+
+      <div class="items">
+        <h3>고객행복센터</h3>
+        <ul>
+          <li class="phone">1644-1107</li>
+          <li>월~토요일 | 오전 7시 - 오후 6시</li>
+          <li>일~공휴일 | 오전 7시 - 오후 1시</li>
+        </ul>
+      </div>
+      <div class="items">
+        <h3>마켓컬리</h3>
+        <ul>
+          <li>법인명(상호) : 주식회사 컬리 \ 사업자등록번호 : 123-45-34242432</li>
+          <li>통신판매업 : 제 2018-서울강남 -12345</li>
+          <li>주소 : 서울특별시 강남구 테헤란로 133, 18(역삼동)</li>
+          <li>채용문의 : abcd@naver.com</li>
+          <li>팩스 : 070-7500-6098</li>
+        </ul>
+      </div>
+      <div class="items">
+        <h3>입점 문의</h3>
+        <ul>
+          <li>입점문의 : 입점문의하기 | 제휴문의 : sooun22@naver.com</li>
+          <li>입점 많이많이 요청해주세요!</li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+</div>
+</body>
+</html>

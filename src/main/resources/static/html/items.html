@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>컬리-로그인</title>
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+    <style>
+        
+@font-face {
+    font-family: 'Pretendard-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+ 
+        *{
+            margin: 0px;
+            padding: 0px;
+            box-sizing: border-box;
+            text-align: left;        
+            font-family: 'Pretendard-Regular';
+        }
+        .header_top{
+            position: relative;
+            top: 0px;
+            background-color: rgb(88, 15, 103);
+            color: white;
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        .header_top p{
+            text-align: center;
+            font-family: 'Titillium Web', sans-serif;
+            font-size: 13px;
+        }
+        .container{
+            color: white;
+            padding:  10px 0;
+            margin:  0 auto;
+            width: 1050px;
+            position: relative;
+        }
+        .quit{
+            position : absolute;
+            right : 0;
+            top: 7px;          
+        } 
+        .acount_top li{
+            color: black;
+            margin: 0 5px 0px 5px;
+            display: inline-block;
+            font-size: 11px;
+            float: right;
+            font-weight: bold;
+            margin-top: 10px;
+            text-align: left;
+        } 
+        .acount_top a:last-child{
+            color: purple;
+            text-align: center;
+        } 
+        .acount_top li:hover{
+            color: purple;
+        } 
+        .box{
+            width: 1130px;
+            margin: 0 auto;         
+        }
+        .box_login{
+            margin: 0 auto;
+            width: 1130px;
+            height: 300px;
+            margin-right: 21px;
+        }
+
+        .box_login h1{
+           margin-top: 120px;
+           font-size: 20px;
+           margin-right: 700px ;
+        }
+        .input_idpw{
+            padding-top: 20px;
+        }
+        
+        .forget{
+            padding-top: 13px;
+            text-align: center;
+            margin-right: 520px;
+            padding-bottom: 13px;
+        }
+
+        .forget a {
+            display: inline-block;
+            text-align: center;
+            text-decoration: none;
+            color: black;
+            font-size: 13px;
+            font-weight: bold;
+        }
+        .account .login{
+            background-color: rgb(88, 15, 103);
+            color: white;
+            text-align: center;
+        }
+
+        .account .login2{
+            border: 1px solid rgb(88, 15, 103);
+            background-color: white;
+            color: rgb(88, 15, 103);
+            text-align: center;
+        }
+        header{
+           height: 150px;
+        } 
+       
+        #logo img{
+            width: 90px;
+            float: left;
+            margin-top: 40px;
+            margin-left: 13px;
+        }
+        #text_bar{
+            margin-top: 34px;
+        }
+        #logo > #text_bar{
+            padding-left: 20px;
+            margin-left: 20px;
+            border: 1px solid rebeccapurple;
+            margin-top: 39px;
+            width: 420px;
+            height: 50px;
+            border-radius: 4px;
+            margin-right: 60px;
+            font-size: 15px;
+        } 
+        .logo > input{
+            margin-top: 180px;
+            margin-left: 30px;
+            border: 1px solid red
+        }
+        span{
+            display: inline-block;
+            margin-right: 7px;
+            margin-top: 44px;
+            font-size: 17px;
+        } 
+        #main_menu{
+            margin-top: 40px; 
+            
+        } 
+        .category{
+            width: 200px;
+            display: inline-block;
+            margin-left: 20px;
+            float: left;
+            position: relative;
+            ;
+        }
+        .category :hover{
+            color: blueviolet;
+            cursor: pointer;
+            
+            
+        }
+        #setbul{
+            position :absolute;
+            border: 1px solid lightgray;
+            border-radius: 20px;
+            width: 120px;
+            text-align: center;
+            margin-left: 863px;
+            font-size: 13px;
+            margin-bottom: 391px;
+            color: blueviolet;
+            
+        }
+        .category svg{
+            position: absolute;
+            top: 18;
+            width: 18px;
+            margin-right: 9px;  
+            bottom: 3;             
+        }
+        .category > span{
+            display: inline-block;
+            margin-top: 1px;
+            margin-left: 40px;
+            font-weight: bold;     
+        }
+    
+        #main_menu a{  
+            text-decoration: none;
+            color: black;
+            font-weight: bold;
+            display: inline-block;
+            margin-left: 150px;
+            font-size: 16px;
+        }
+        #main_menu a:first-child{  
+            margin-left: -20px;
+            
+        }
+        #main_menu li:hover{
+            color: blueviolet;
+            text-decoration: underline;
+        }
+           
+        #main_image{
+            position: relative;
+            margin-top: 58px;
+            height: 312px;
+            background-image: url(./img/img01.jpg);
+            background-repeat: no-repeat;
+            background-position: top center;
+    
+
+        } 
+        .button{
+            position: absolute;
+            top: 105px;
+            left: 23px;
+            background-color: gray;
+            opacity: 0.4;
+             
+            border-radius: 100px;
+            border: none;
+            color: white;
+            padding: 10px 20px 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            font-size: 35px;
+            cursor: pointer;
+        }  
+        .button2{
+            position: absolute;
+            padding: 10px 20px 10px 20px;
+            top: 105px;
+            left: 1043px;
+            background-color: gray;
+            opacity: 0.4;
+            border-radius: 100px;
+            border: none;
+            color: white;
+           
+            text-align: center;
+            text-decoration: none;
+            font-size: 35px;
+            cursor: pointer;
+        }  
+        #first{
+            float: left;
+            color: rgb(84, 8, 155);
+            font-weight: bold;
+            cursor: pointer;
+        }
+        #second{
+            float: left;
+            color: rgba(75, 75, 74, 0.795);   
+        }
+        #product_list{
+            display: flex;
+            margin-top : 30px;
+            height: 450px;
+        } 
+        h1{
+            margin-top: 80px;
+            font-size: 30px;
+            font-style: normal;
+            text-align: center;
+        } 
+        .item > img{
+            margin-left: 50px;
+            height: 400px;
+        }
+        .item > img:hover{
+            transform: scale(1.1); transition: .3s; /* 부드럽게 */
+            box-shadow: 0 17px 20px -18px rgba(0, 0, 0, 1);
+        }
+        .item p{
+            padding: 15px;
+            text-align: left;
+            margin-left: 35px;
+        }
+        .item h3{
+            text-align: left;
+            margin-left: 55px;
+            font-size: 20px;
+        }
+        li {
+            list-style-type: none;
+        }
+
+        .tel_maintitle{
+            margin-top: 90px;
+            margin-left: 920px;
+        }  
+        .tel_hr{
+            width: 900px;
+            margin: 0 auto;
+            margin-top: 20px;
+            color: black;
+        }
+        .tel_input{ 
+            margin: 0 auto;
+            margin-top: 20px; 
+           
+        }  
+        .tel_button{
+         cursor: pointer;
+         text-align: center; 
+         
+        }
+        .tel_button > input{
+         background-color: rgb(84, 8, 155);
+         margin-top: 70px;
+         padding: 15px 50px;
+         border-radius: 10px;
+         font-size: 13px;
+         border: 1px solid rgb(211, 209, 209);
+         color: white;
+         cursor: pointer;
+        }  
+        .tel_option{
+           margin-top: 40px;
+           display: block;
+        }
+        .tel_option td{ 
+           display: inline-block;
+        } 
+        label{
+            display: inline-block;
+            width: 60px;
+        }
+        footer{
+            height: 220px;
+           
+            color: rgb(58, 57, 57);
+            margin-top: 80px;
+           
+        }
+        footer .items{
+            float: left;
+            margin-top: 50px;
+            margin-left: 40px;
+           
+        }
+        footer .items ul{
+            margin-top: 15px;
+        }
+        footer .items li{
+            text-align: left; 
+            font-size: 14px;
+            padding-top: 8px;
+            margin-top: 5px;
+        }
+        footer .phone{
+            /* font-size: 100px; */
+        }
+        #costomer_list {
+           visibility: hidden;
+           position: absolute;
+           /* float: right; */
+           display: inline-block;
+           right: 390px;
+           top: 73px;
+           font-size: 11px;
+           border: 1px solid gray;
+           padding: 4px 30px 2px 6px
+        }
+        #costomer_list li{
+           padding: 3px;        
+        } 
+        #costomer_list a{
+          color: black;
+           text-decoration: none;           
+        } 
+        .add_button{
+            width: 100px;
+            height: 40px;
+            text-align: center;
+            margin: 0 auto;
+            color: white;
+            background-color: rgb(88, 15, 103);
+            border-radius: 5px;
+            border-style: none;
+            cursor: pointer;
+            margin-left: 600px;
+            
+        }
+        
+        .add_Form{
+           
+            width: 600px;
+            margin: 0 auto;
+            margin-top:30px
+        }
+        table{
+             
+            margin-top: 30px;
+            text-align: center;
+        }
+        table td{
+             
+            width: 300px;
+            text-align: center;
+            height: 40px;
+        }
+        table th{
+            text-align: center;
+        }
+
+         
+    </style>
+    <script>
+        let index = 0;
+        $(function(){
+            $(".button").click(function(){
+            console.log("btn");
+            index = (index+3)%4;
+            $("#main_image").css('background-image','url(./img/img0'+(index+1)+'.jpg');
+        });
+        $(".button2").click(function(){
+            index = (index+1)%4;
+            $("#main_image").css({'background-image':"url(./img/img0"+(index+1)+".jpg)"});
+        });
+        });
+
+        $(function(){
+            $(".quit").click(function(){
+                console.log("fdffds");
+                $(".header_top").animate({'top':'-36px'},500);
+            });
+                
+            });
+        $(function(){
+            $("#second").mouseover(function(){
+                $(this).css({'color': 'purple', 'cursor': 'pointer'})
+            });
+            $("#second").mouseout(function(){
+                $(this).css({'color': 'gray'})
+            });
+        });      
+        $(function(){
+            let mouse;
+            $(window).mousemove(function(e){
+                mouse = e.pageY;
+            })
+            $("#costomer_center").mouseenter(function(){
+                $("#costomer_list").css({'visibility': 'visible'})
+                
+            });
+           
+            $("#costomer_center").mouseleave(function(){
+                if(mouse<58){
+                    $("#costomer_list").css({'visibility': 'hidden'});
+                }
+            });
+
+            $("#costomer_list").mouseleave(function(){
+                $("#costomer_list").css({'visibility': 'hidden'});
+            }); 
+        });
+        </script>
+</head>
+<body>
+    <header>
+        <div class="header_top">
+            <div class="container">
+                <p>지금 가입하고 인기상품 <b>100원</b>에 받아가세요! 
+                </p>
+                <a href="#" class="quit"><img src="./img/cancel.png" width="14px"></a>
+            </div>
+        </div>
+        <div class="box">
+            <div class="acount_top">
+                <ul>
+                    <a href="#"><li id="costomer_center">고객센터 ▼</li></a>
+                    <a href="./login.html"><li>로그인|</li></a>
+                    <a href="#"><li>회원가입|</li></a>
+                </ul>
+            </div>
+            </div>
+            <div id="costomer_list">
+                <ul>
+                    <a href="#"><li>공지사항</li></a>
+                    <a href="#"><li>자주하는 질문</li></a>
+                    <a href="#"><li>1:1문의</li></a>
+                    <a href="#"><li>대량주문 문의</li></a>
+                </ul>
+            </div>
+    <div class="box">
+        <div id="logo">
+            <span id="first">마켓컬리 | </span>
+            <span id="second">뷰티컬리</span>
+            <a href="./index5.html"><img src="./img/logo.jpg" alt="마켓컬리 로고이미지"></a>
+            <input id="text_bar" type="text" placeholder="검색어를 입력해주세요"> 
+        </div>         
+    </div> <!--box-->   
+    <div class="box">
+        <nav id="main_menu">
+            <div class="category">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Pro 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg>
+                <span>카테고리</span>
+                <span id="setbul">샛별・낮 새벽배송</span>
+            </div>
+            <ul class="list_menu">
+                <a href="#"><li>신상품</li></a>
+                <a href="#"><li>베스트</li></a>
+                <a href="#"><li>알뜰쇼핑</li></a>
+                <a href="#"><li>특가/혜택</li></a>
+            </ul>
+        </nav>
+    </div><!--box-->
+   </header> 
+   <section>
+    <div class="tel_maintitle"><h2>상품 목록</h2></div> 
+    <hr class="tel_hr">
+  <div class="add_Form">
+    <div class="row">
+        <div class="col">
+            <button class="add_button" 
+            onclick="location.href='addForm.html'" type="button">상품등록</button>
+        </div>
+    </div> 
+    <div>
+        <table class="table">
+            <thead>
+                <tr>
+                <th>ID</th>
+                <th>상품명</th>
+                <th>가격</th>
+                <th>수량</th>
+                </tr> 
+            </thead>  
+           <tbody>
+              <tr>
+                    <td><a href="item.html"></a>1</td>
+                    <td><a href="item.html"></a>테스트 상품</td>
+                    <td>10000</td>
+                    <td>10</td> 
+              </tr> 
+              <tr>
+                <td><a href="item.html"></a>2</td>
+                <td><a href="item.html"></a>테스트 상품</td>
+                <td>20000</td>
+                <td>20</td> 
+              </tr> 
+           </tbody>  
+         </table>        
+       </div>   
+     </div>    
+    </section>
+
+   <footer>
+    <div class="box">
+         <div class="items">
+            <h3>고객행복센터</h3>
+            <ul>
+                <li class="phone">1644-1107</li>
+                <li>월~토요일 | 오전 7시 - 오후 6시</li>
+                <li>일~공휴일 | 오전 7시 - 오후 1시</li>
+            </ul>
+         </div>
+
+         <div class="items">
+            <h3>마켓컬리</h3>
+            <ul>
+                <li>법인명(상호) : 주식회사 컬리 \ 사업자등록번호 : 123-45-34242432</li>
+                <li>통신판매업 : 제 2018-서울강남 -12345</li>
+                <li>주소 : 서울특별시 강남구 테헤란로 133, 18(역삼동)</li>
+                <li>채용문의 : abcd@naver.com</li>
+                <li>팩스 : 070-7500-6098</li>
+            </ul>
+         </div>
+         <div class="items">
+            <h3>입점 문의</h3>
+            <ul>
+                <li>입점문의 : 입점문의하기 | 제휴문의 : sooun22@naver.com</li>
+                <li>입점 많이많이 요청해주세요!</li>                 
+            </ul>
+         </div>
+    </div>
+   </footer>
+</body>
+</html>
